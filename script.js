@@ -1,7 +1,8 @@
 $(function(){
-
+  // Initialize count to 1
   var count = 1;
 
+  // Switches author between "Me, Myself, I"
   function nameSwitch() {
     var name = "";
     switch (count) {
@@ -24,10 +25,13 @@ $(function(){
     }
   }
 
+  // Append message to message-body
   function appendItBruh(message_in) {
+    // Get the hours and minutes
     var date = new Date($.now());
     var time = date.getHours() + ":" + date.getMinutes();
 
+    // Constructing the message
     var char = '';
 
     char += '<li class="message">'
@@ -37,9 +41,11 @@ $(function(){
     char += '<span class="timestamp">' + time + '</span>'
     char += '</li>'
 
+    // Appending message to #conversation
     $('#conversation').append(char);
   }
 
+  // When Send button is clicked...
   $('#new-message-button').click(function(evt) {
 
       var message = $('#new-message-body').val();
@@ -50,6 +56,7 @@ $(function(){
   });
 
 
+  // When user hits "enter" key...
   $("#new-message-body").keydown(function(e) {
       var message = $('#new-message-body').val();
 
@@ -59,10 +66,12 @@ $(function(){
       }
   });
 
+  // Delete a conversation...
   $('#conversation').on('click', '.delete', function(evt) {
     $(this).parent().closest('.message').remove()
   });
 
+  // Chuck Norris API..
   $('#lonely').click(function(evt) {
     $.get('http://api.icndb.com/jokes/random', function(result) {
       count = 4;
